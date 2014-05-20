@@ -16,10 +16,11 @@ AUTHOR: Davi Garcia (davivcgarcia@gmail.com)
 DATE: 05/20/2014
 """
 
+# This need to be done before any Django initialization.
 import os
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "eventex.settings")
+
 from dj_static import Cling
 from django.core.wsgi import get_wsgi_application
-
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "eventex.settings")
 # Configuration to get static files served by Django using dj-static.
 application = Cling(get_wsgi_application())
