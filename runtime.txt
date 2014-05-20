@@ -16,10 +16,5 @@
 # DATE: 05/20/2014
 # 
 
-# Modules used on this project.
-Django==1.6.5
-Unipath==1.0
-dj-database-url==0.3.0
-dj-static==0.0.5
-gunicorn==18.0
-psycopg2==2.5.3
+# Fixing the Python version.
+python-2.7.6
