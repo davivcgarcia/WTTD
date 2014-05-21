@@ -17,17 +17,13 @@ DATE: 05/20/2014
 */
 
 body {
-  background-color: #000000;
-  font-family: Verdana;
-  color: #FFFFFF;
-  text-align: center;
+	padding-top: 50px;
 }
-
-a {
-  color: #B0B0B0;
-  text-decoration: none;
+.home {
+	padding: 40px 15px;
+	text-align: center;
 }
-
-#footer {
-  font-size: small;
+.brand {
+	font-size: 60px;
+	font-weight: bold;
 }

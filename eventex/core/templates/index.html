@@ -17,33 +17,59 @@ AUTHOR: Davi Garcia (davivcgarcia@gmail.com)
 DATE: 05/21/2014
 -->
 <html lang="pt-br">
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <meta name="description" content="EventeX" />
-  <title>EventeX</title>
-  <link type="image/x-icon" href="{{ STATIC_URL }}img/favicon.ico" rel="shortcut icon" />
-  <link type="text/css" href="{{ STATIC_URL }}css/style.css" rel="stylesheet" media="screen" />
-  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.0/jquery.min.js"></script>
-</head>
-<body style="background-image:url('{{ STATIC_URL }}img/background.jpeg')">
-  <div id="page">
-    <div id="header">
-    <br /><br />
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>EventeX</title>
+    
+    <link type="image/x-icon" href="{{ STATIC_URL }}img/favicon.ico" rel="shortcut icon">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link href="{{ STATIC_URL }}css/style.css" rel="stylesheet">
+  </head>
+  <body>
+
+  <!-- Menu with brand name and links. -->
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">EventeX</a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Principal</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Page's container. -->
+    <div class="container">
+
+      <!-- Content. -->
+      <div class="home">
         <img src="{{ STATIC_URL }}img/logo.png" alt="EventeX" />
+        <h1 class="brand">EventeX</h1>
+        <p class="lead">O evento mais sensacional do ano depois do Dev in Rio!<br/>Você não pode perder esta oportunidade!<br/><strong>Abertura das inscrições no próximo domingo.</strong><br/>Para dúvidas e mais informações entre em contato com <a href="mailto:eventex@eventex.com.br">eventex@eventex.com.br</a></p>
+      </div>
+
+      <!-- Page's footer with license statement. -->
+      <hr>
+      <footer>
+        <p>&reg; 2014. <a href="#">EventeX</a>, licenciado pela GNU General Public License v3.0.</p>
+      </footer>
+
     </div>
-    <div id="content">
-      <br />
-      <h1>Bem-vindo ao EventeX!</h1>
-      <br />
-      <p>O evento mais sensacional do ano depois do Dev in Rio!</p>
-      <p>Você não pode perder esta oportunidade!</p>
-      <p><strong>Abertura das inscrições no próximo domingo.</strong></p>
-      <p>Para dúvidas e mais informações entre em contato com <a href="mailto:eventex@eventex.com.br">eventex@eventex.com.br</a></p>
-      <br />
-    </div>
-    <div id="footer">
-      <p>&reg; 2014. <a id="gpl-logo" rel="license" href="#">EventeX</a>, licenciado pela GNU General Public License v3.0.</p>
-    </div>
-  </div>
-</body>
+
+    <!-- Placed at the end of the document so the pages load faster. -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+  </body>
 </html>
