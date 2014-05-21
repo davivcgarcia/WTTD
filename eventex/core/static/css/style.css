@@ -13,14 +13,14 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 AUTHOR: Davi Garcia (davivcgarcia@gmail.com)
-DATE: 05/20/2014
+DATE: 05/21/2014
 */
 
 body {
 	padding-top: 50px;
 }
 .home {
-	padding: 40px 15px;
+	padding: 80px 15px;
 	text-align: center;
 }
 .brand {

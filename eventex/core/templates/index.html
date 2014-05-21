@@ -23,14 +23,14 @@ DATE: 05/21/2014
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>EventeX</title>
-    
+
     <link type="image/x-icon" href="{{ STATIC_URL }}img/favicon.ico" rel="shortcut icon">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
     <link href="{{ STATIC_URL }}css/style.css" rel="stylesheet">
   </head>
   <body>
 
-  <!-- Menu with brand name and links. -->
+    <!-- Menu with brand name and links. -->
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="container">
         <div class="navbar-header">
@@ -52,20 +52,19 @@ DATE: 05/21/2014
 
     <!-- Page's container. -->
     <div class="container">
-
-      <!-- Content. -->
       <div class="home">
         <img src="{{ STATIC_URL }}img/logo.png" alt="EventeX" />
         <h1 class="brand">EventeX</h1>
         <p class="lead">O evento mais sensacional do ano depois do Dev in Rio!<br/>Você não pode perder esta oportunidade!<br/><strong>Abertura das inscrições no próximo domingo.</strong><br/>Para dúvidas e mais informações entre em contato com <a href="mailto:eventex@eventex.com.br">eventex@eventex.com.br</a></p>
       </div>
+    </div>
 
-      <!-- Page's footer with license statement. -->
-      <hr>
-      <footer>
-        <p>&reg; 2014. <a href="#">EventeX</a>, licenciado pela GNU General Public License v3.0.</p>
-      </footer>
-
+    <!-- Page footer with license statement and Github repository link. -->
+    <div class="navbar navbar-default navbar-fixed-bottom">
+      <div class="container">
+        <p class="navbar-text pull-left">&reg; 2014. Feito por <strong>Davi Garcia</strong>, licenciado pela GPLv3.</p>
+        <a href="https://github.com/davivcgarcia/WTTD" class="navbar-btn btn btn-danger pull-right">Código no Github</a>
+      </div>
     </div>
 
     <!-- Placed at the end of the document so the pages load faster. -->
