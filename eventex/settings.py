@@ -29,7 +29,7 @@ DEBUG = True
 TEMPLATE_DEBUG = True
 ALLOWED_HOSTS = []
 
-# Application definition.
+# Apps enabled.
 
 INSTALLED_APPS = (
     'django.contrib.admin',
@@ -42,6 +42,8 @@ INSTALLED_APPS = (
     'eventex.core',
 )
 
+# Middleware enabled.
+
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -51,10 +53,13 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
+# Location of the root URL map.
+
 ROOT_URLCONF = 'eventex.urls'
 
-WSGI_APPLICATION = 'eventex.wsgi.application'
+# WSGI object.
 
+WSGI_APPLICATION = 'eventex.wsgi.application'
 
 # Database using dj-database-url for Heroku and Unipath.
 
@@ -62,6 +67,12 @@ DATABASES = {
     'default': dj_database_url.config(
         default='sqlite3:///' + BASE_DIR.child('db.sqlite3')
     )
+}
+
+# Logging configuration (required by Gunicorn integration).
+
+LOGGING = {
+    'version': 1,
 }
 
 # Internationalization.
