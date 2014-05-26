@@ -18,16 +18,17 @@ DATE: 05/20/2014
 
 # Project Imports.
 
-import dj_database_url
 from unipath import Path
+from decouple import config
+from dj_database_url import parse as db_url
 
 # General Configuration.
 
 BASE_DIR = Path(__file__).parent
-SECRET_KEY = '8y)@(krme@28r2e3j5=irunc8(+8)fxqbevlg%1xmkov%6$6=='
-DEBUG = True
-TEMPLATE_DEBUG = True
-ALLOWED_HOSTS = []
+SECRET_KEY = config('SECRET_KEY')
+DEBUG = config('DEBUG', default=False, cast=bool)
+TEMPLATE_DEBUG = DEBUG
+ALLOWED_HOSTS = ['.localhost', '127.0.0.1', '.herokuapp.com']
 
 # Apps enabled.
 
@@ -64,8 +65,10 @@ WSGI_APPLICATION = 'eventex.wsgi.application'
 # Database using dj-database-url for Heroku and Unipath.
 
 DATABASES = {
-    'default': dj_database_url.config(
-        default='sqlite3:///' + BASE_DIR.child('db.sqlite3')
+    'default': config(
+        'DATABASE_URL',
+        default='sqlite3:///' + BASE_DIR.child('db.sqlite3'),
+        cast=db_url,
     )
 }
 
