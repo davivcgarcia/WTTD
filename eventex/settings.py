@@ -28,7 +28,7 @@ BASE_DIR = Path(__file__).parent
 SECRET_KEY = config('SECRET_KEY')
 DEBUG = config('DEBUG', default=False, cast=bool)
 TEMPLATE_DEBUG = DEBUG
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['.localhost', '127.0.0.1', '.herokuapp.com']
 
 # Apps enabled.
 
@@ -67,8 +67,8 @@ WSGI_APPLICATION = 'eventex.wsgi.application'
 DATABASES = {
     'default': config(
         'DATABASE_URL',
-        default='sqlite3:///' + BASE_DIR.child('db.sqlite3'),
-        cast=db_url,
+        default='sqlite:///' + BASE_DIR.child('db.sqlite3'),
+        cast=db_url
     )
 }
 
