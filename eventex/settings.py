@@ -13,7 +13,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 AUTHOR: Davi Garcia (davivcgarcia@gmail.com)
-DATE: 05/20/2014
+DATE: 05/28/2014
 """
 
 # Project Imports.
@@ -28,7 +28,7 @@ BASE_DIR = Path(__file__).parent
 SECRET_KEY = config('SECRET_KEY')
 DEBUG = config('DEBUG', default=False, cast=bool)
 TEMPLATE_DEBUG = DEBUG
-ALLOWED_HOSTS = ['.localhost', '127.0.0.1', '.herokuapp.com']
+ALLOWED_HOSTS = ['*']
 
 # Apps enabled.
 
@@ -39,7 +39,6 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'gunicorn',
     'eventex.core',
 )
 
