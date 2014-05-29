@@ -71,12 +71,6 @@ DATABASES = {
     )
 }
 
-# Logging configuration (required by Gunicorn integration).
-
-LOGGING = {
-    'version': 1,
-}
-
 # Internationalization.
 
 LANGUAGE_CODE = 'en-us'
