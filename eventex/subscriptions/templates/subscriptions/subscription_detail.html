@@ -1,14 +1,14 @@
 {% extends 'base.html' %}
 {% block content %}
-<p>Parabéns {{ subscription.name }},</p>
-<p>sua inscrição foi realizada em
-	{{ subscription.created_at|date:"d/m/Y" }}.
-</p>
-<p>Em breve, entraremos em contato pelo
+<p class="title">Parabéns, {{ subscription.name }} !</p>
+<br/>
+<p class="lead">Sua inscrição foi realizada em <strong>{{ subscription.created_at|date:"d/m/Y" }}</strong>.</p>
+<p class="lead">Em breve, entraremos em contato pelo
 	{% if subscription.phone %}
-		telefone {{ subscription.phone }}
+		telefone <strong>{{ subscription.phone }}</strong>.
 	{% else %}
-		e-mail {{ subscription.email }}
+		e-mail <strong>{{ subscription.email }}</strong>.
 	{% endif %}
 </p>
+<a href="/">Retornar...</a>
 {% endblock content %}

@@ -19,6 +19,8 @@ DATE: 05/20/2014
 
 from django.shortcuts import render
 
-# View created on first day of class (May 18th, 2014).
 def home(request):
+	"""
+	View to render the home page.
+	"""
 	return render(request, 'index.html')

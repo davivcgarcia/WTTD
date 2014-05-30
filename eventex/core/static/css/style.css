@@ -23,7 +23,20 @@ body {
 	padding: 80px 15px;
 	text-align: center;
 }
-.brand {
-	font-size: 60px;
+.title {
+	font-size: 50px;
 	font-weight: bold;
 }
+
+.subscribe_form label {
+    width:150px;
+    margin-top: 3px;
+    text-align: left;
+    padding:3px;
+}
+.subscribe_form input {
+    height:35px;
+    width:220px;
+    padding:5px 8px;
+}
+.subscribe_form button {margin-left:156px;}
