@@ -1,3 +1,4 @@
+# coding: utf-8
 """
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -13,7 +14,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 AUTHOR: Davi Garcia (davivcgarcia@gmail.com)
-DATE: 05/28/2014
+DATE: 05/29/2014
 """
 
 # Project Imports.
@@ -40,6 +41,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'eventex.core',
+    'eventex.subscriptions',
 )
 
 # Middleware enabled.

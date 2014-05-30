@@ -14,11 +14,16 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 AUTHOR: Davi Garcia (davivcgarcia@gmail.com)
-DATE: 05/20/2014
+DATE: 05/29/2014
 """
 
-from django.shortcuts import render
+from django.test import TestCase
+from eventex.subscriptions.forms import SubscriptionForm
 
-# View created on first day of class (May 18th, 2014).
-def home(request):
-	return render(request, 'index.html')
+class SubscriptionFormTest(TestCase):
+	def test_form_has_fields(self):
+		"""
+		Form must have 4 fields.
+		"""
+		form = SubscriptionForm()
+		self.assertItemsEqual(['name','email','cpf', 'phone'], form.fields)

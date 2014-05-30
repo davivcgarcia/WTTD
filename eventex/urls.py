@@ -1,3 +1,4 @@
+# coding: utf-8
 """
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -13,7 +14,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 AUTHOR: Davi Garcia (davivcgarcia@gmail.com)
-DATE: 05/20/2014
+DATE: 05/29/2014
 """
 
 from django.contrib import admin
@@ -24,5 +25,8 @@ admin.autodiscover()
 urlpatterns = patterns('',
 	# View created on first day of class (May 18th, 2014).
     url(r'^$', 'eventex.core.views.home', name='home'),
+    url(r'^inscricao/$', 'eventex.subscriptions.views.subscribe', name='subscribe'),
+    url(r'^inscricao/(\d+)/$', 'eventex.subscriptions.views.detail', name='detail'),
+    
     url(r'^admin/', include(admin.site.urls)),
 )

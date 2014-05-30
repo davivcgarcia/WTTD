@@ -14,11 +14,18 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 AUTHOR: Davi Garcia (davivcgarcia@gmail.com)
-DATE: 05/20/2014
+DATE: 05/29/2014
 """
 
-from django.shortcuts import render
+from django import forms
+from django.utils.translation import ugettext as _
+from eventex.subscriptions.models import Subscription
 
-# View created on first day of class (May 18th, 2014).
-def home(request):
-	return render(request, 'index.html')
+class SubscriptionForm(forms.ModelForm):
+	name = forms.CharField(label=_('Nome'))
+	cpf = forms.CharField(label=_('CPF'), max_length=11)
+	email = forms.EmailField(label=_('Email'))
+	phone = forms.CharField(label=_('Telefone'))
+
+	class Meta:
+		model = Subscription

@@ -14,11 +14,25 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 AUTHOR: Davi Garcia (davivcgarcia@gmail.com)
-DATE: 05/20/2014
+DATE: 05/29/2014
 """
 
-from django.shortcuts import render
+from django.db import models
+from django.utils.translation import ugettext_lazy as _
 
-# View created on first day of class (May 18th, 2014).
-def home(request):
-	return render(request, 'index.html')
+class Subscription(models.Model):
+	name = models.CharField(_('nome'), max_length=100)
+	cpf = models.CharField(_('CPF'), max_length=11, unique=True)
+	email = models.EmailField(_('email'), unique=True)
+	phone = models.CharField(_('telefone'), max_length=20, blank=True)
+	created_at = models.DateTimeField(_('criado em'), auto_now_add=True)
+
+	class Meta:
+		ordering = ['created_at']
+		verbose_name = _(u'inscrição')
+		verbose_name_plural = _(u'inscrições')
+
+	def __unicode__(self):
+		return self.name
+	
+		
