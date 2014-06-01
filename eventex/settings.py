@@ -26,7 +26,7 @@ from dj_database_url import parse as db_url
 # General Configuration.
 
 BASE_DIR = Path(__file__).parent
-SECRET_KEY = config('SECRET_KEY')
+SECRET_KEY = config('SECRET_KEY', default='8y)@(krme@28r2e3j5=irunc8(+8)fxqbevlg%1xmkov%6$6==')
 DEBUG = config('DEBUG', default=False, cast=bool)
 TEMPLATE_DEBUG = DEBUG
 ALLOWED_HOSTS = ['*']
