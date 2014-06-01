@@ -1,6 +1,9 @@
 language: python
 python:
   - "2.7"
+env:
+  - SECRET_KEY='8y)@(krme@28r2e3j5=irunc8(+8)fxqbevlg%1xmkov%6$6=='
+  - DEBUG=False
 # Commands to install dependencies.
 install:
   - "pip install -r requirements.txt"
