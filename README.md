@@ -1,4 +1,4 @@
-[![Code Health](https://landscape.io/github/davivcgarcia/WTTD/master/landscape.png)](https://landscape.io/github/davivcgarcia/WTTD/master)
+[![Code Health](https://landscape.io/github/davivcgarcia/WTTD/master/landscape.png)](https://landscape.io/github/davivcgarcia/WTTD/master) [![Build Status](https://travis-ci.org/davivcgarcia/WTTD.svg?branch=master)](https://travis-ci.org/davivcgarcia/WTTD)
 
 About
 =
