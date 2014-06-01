@@ -1,3 +1,5 @@
+[![Code Health](https://landscape.io/github/davivcgarcia/WTTD/master/landscape.png)](https://landscape.io/github/davivcgarcia/WTTD/master)
+
 About
 =
 
