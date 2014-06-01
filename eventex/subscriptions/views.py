@@ -17,8 +17,8 @@ AUTHOR: Davi Garcia (davivcgarcia@gmail.com)
 DATE: 05/29/2014
 """
 
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponse,HttpResponseRedirect
 from eventex.subscriptions.models import Subscription
 from eventex.subscriptions.forms import SubscriptionForm
 
@@ -35,11 +35,7 @@ def new(request):
 	"""
 	New accesses need to see the form in clean state.
 	"""
-	return render(
-		request,
-		'subscriptions/subscription_form.html',
-		{'form':SubscriptionForm()}
-	)
+	return render(request, 'subscriptions/subscription_form.html', {'form': SubscriptionForm()})
 
 def create(request):
 	"""
@@ -50,20 +46,12 @@ def create(request):
 		obj = form.save()
 		return HttpResponseRedirect('/inscricao/%d/' % obj.pk)
 	else:
-		return render(
-			request,
-			'subscriptions/subscription_form.html',
-			{'form':form}
-		)
+		return render(request, 'subscriptions/subscription_form.html', {'form': form})
 
 def detail(request, pk):
 	"""
 	Access the detail page should handle a specific subscription.
 	"""
 	subscription = get_object_or_404(Subscription, pk=pk)
-	return render(
-		request,
-		'subscriptions/subscription_detail.html',
-		{'subscription': subscription}
-	)
+	return render(request, 'subscriptions/subscription_detail.html', {'subscription': subscription})
 	

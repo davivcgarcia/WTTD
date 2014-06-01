@@ -1,3 +1,2 @@
-from django.db import models
-
-# Create your models here.
+#Removed to avoid alerts on Landscape.io.
+#from django.db import models
