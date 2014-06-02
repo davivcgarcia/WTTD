@@ -23,35 +23,41 @@ from eventex.subscriptions.models import Subscription
 from eventex.subscriptions.forms import SubscriptionForm
 
 def subscribe(request):
-	"""
-	Handler to dispatch the correct view to each method.
-	"""
-	if request.method == 'POST':
-		return create(request)
-	else:
-		return new(request)
+    """
+    Handler to dispatch the correct view to each method.
+    """
+    if request.method == 'POST':
+        return create(request)
+    else:
+        return new(request)
 
 def new(request):
-	"""
-	New accesses need to see the form in clean state.
-	"""
-	return render(request, 'subscriptions/subscription_form.html', {'form': SubscriptionForm()})
+    """
+    New accesses need to see the form in clean state.
+    """
+    return render(request,
+                  'subscriptions/subscription_form.html',
+                  {'form': SubscriptionForm()})
 
 def create(request):
-	"""
-	Requests with POST data need to be handled as creation.
-	"""
-	form = SubscriptionForm(request.POST)
-	if form.is_valid():
-		obj = form.save()
-		return HttpResponseRedirect('/inscricao/%d/' % obj.pk)
-	else:
-		return render(request, 'subscriptions/subscription_form.html', {'form': form})
+    """
+    Requests with POST data need to be handled as creation.
+    """
+    form = SubscriptionForm(request.POST)
+    if form.is_valid():
+        obj = form.save()
+        return HttpResponseRedirect('/inscricao/%d/' % obj.pk)
+    else:
+        return render(request,
+                      'subscriptions/subscription_form.html',
+                      {'form': form})
 
 def detail(request, pk):
-	"""
-	Access the detail page should handle a specific subscription.
-	"""
-	subscription = get_object_or_404(Subscription, pk=pk)
-	return render(request, 'subscriptions/subscription_detail.html', {'subscription': subscription})
-	
+    """
+    Access the detail page should handle a specific subscription.
+    """
+    subscription = get_object_or_404(Subscription, pk=pk)
+    return render(request,
+                  'subscriptions/subscription_detail.html',
+                  {'subscription': subscription})
+    

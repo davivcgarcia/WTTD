@@ -21,7 +21,9 @@ DATE: 05/20/2014
 import os
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "eventex.settings")
 
+# Django imports.
 from dj_static import Cling
 from django.core.wsgi import get_wsgi_application
+
 # Configuration to get static files served by Django using dj-static.
 application = Cling(get_wsgi_application())

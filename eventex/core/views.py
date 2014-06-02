@@ -20,7 +20,7 @@ DATE: 05/20/2014
 from django.shortcuts import render
 
 def home(request):
-	"""
-	View to render the home page.
-	"""
-	return render(request, 'index.html')
+    """
+    View to render the home page.
+    """
+    return render(request, 'index.html')

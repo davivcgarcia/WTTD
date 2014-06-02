@@ -23,71 +23,67 @@ from django.db import IntegrityError
 from eventex.subscriptions.models import Subscription
 
 class SubscriptionTest(TestCase):
+    """
+    Test Class.
+    """
+    def setUp(self):
+        """
+        Test initialization.
+        """
+        self.obj = Subscription(name='Davi Garcia',
+                                cpf='12345678901',
+                                email='davigarcia@gmail.com',
+                                phone='(21) 1234-5678')
 
-	def setUp(self):
-		"""
-		Test initialization.
-		"""
-		self.obj = Subscription(
-			name = 'Davi Garcia',
-			cpf = '12345678901',
-			email = 'davigarcia@gmail.com',
-			phone = '(21) 1234-5678'
-		)
+    def test_create(self):
+        """
+        Subscription must have name, cpf, email, phone.
+        """
+        self.obj.save()
+        self.assertEqual(1, self.obj.pk)
 
-	def test_create(self):
-		"""
-		Subscription must have name, cpf, email, phone.
-		"""
-		self.obj.save()
-		self.assertEqual(1, self.obj.pk)
+    def test_has_created_at(self):
+        """
+        Subscriptions must have automatic create_at.
+        """
+        self.obj.save()
+        self.assertIsInstance(self.obj.created_at, datetime)
 
-	def test_has_created_at(self):
-		"""
-		Subscriptions must have automatic create_at.
-		"""
-		self.obj.save()
-		self.assertIsInstance(self.obj.created_at, datetime)
-
-	def test_unicode(self):
-		"""
-		Verify the unicode representation of the object.
-		"""
-		self.assertEqual(u'Davi Garcia', unicode(self.obj))
+    def test_unicode(self):
+        """
+        Verify the unicode representation of the object.
+        """
+        self.assertEqual(u'Davi Garcia', unicode(self.obj))
 
 class SubscriptionUniqueTest(TestCase):
+    """
+    Test Class.
+    """
+    def setUp(self):
+        """
+        Test initialization.
+        """
+        Subscription.objects.create(name='Davi Garcia',
+                                    cpf='12345678901',
+                                    email='davigarcia@gmail.com',
+                                    phone='(21) 1234-5678')
 
-	def setUp(self):
-		"""
-		Test initialization.
-		"""
-		Subscription.objects.create(
-			name = 'Davi Garcia',
-			cpf = '12345678901',
-			email = 'davigarcia@gmail.com',
-			phone = '(21) 1234-5678'
-		)
+    def test_cpf_unique(self):
+        """
+        CPF must be unique.
+        """
+        s = Subscription(name='David Garcia',
+                         cpf='12345678901',
+                         email='davigarcia@yahoo.com',
+                         phone='(21) 4321-5678')
+        self.assertRaises(IntegrityError, s.save)
 
-	def test_cpf_unique(self):
-		"""
-		CPF must be unique.
-		"""
-		s = Subscription(
-			name = 'David Garcia',
-			cpf = '12345678901',
-			email = 'davigarcia@yahoo.com',
-			phone = '(21) 4321-5678'
-		)
-		self.assertRaises(IntegrityError, s.save)
-
-	def test_email_unique(self):
-		"""
-		CPF must be unique.
-		"""
-		s = Subscription(
-			name = 'David Garcia',
-			cpf = '10987654321',
-			email = 'davigarcia@gmail.com',
-			phone = '(21) 4321-5678'
-		)
-		self.assertRaises(IntegrityError, s.save)	
+    def test_email_unique(self):
+        """
+        CPF must be unique.
+        """
+        s = Subscription(name='David Garcia',
+                         cpf='10987654321',
+                         email='davigarcia@gmail.com',
+                         phone='(21) 4321-5678')
+        self.assertRaises(IntegrityError, s.save)

@@ -22,10 +22,16 @@ from django.utils.translation import ugettext as _
 from eventex.subscriptions.models import Subscription
 
 class SubscriptionForm(forms.ModelForm):
-	name = forms.CharField(label=_('Nome'))
-	cpf = forms.CharField(label=_('CPF'), max_length=11)
-	email = forms.EmailField(label=_('Email'))
-	phone = forms.CharField(label=_('Telefone'))
+    """
+    Class to map the form used for Subscriptions app.
+    """
+    name = forms.CharField(label=_('Nome'))
+    cpf = forms.CharField(label=_('CPF'), max_length=11)
+    email = forms.EmailField(label=_('Email'))
+    phone = forms.CharField(label=_('Telefone'))
 
-	class Meta:
-		model = Subscription
+    class Meta(object):
+        """
+        Meta-class to connect form to model.
+        """
+        model = Subscription
