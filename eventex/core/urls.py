@@ -14,27 +14,9 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
-from django.test import TestCase
-from django.core.urlresolvers import reverse as r
+from django.conf.urls import patterns, include, url
 
-class HomeTest(TestCase):
-    """
-    Test Class.
-    """
-    def setUp(self):
-        """
-        Test initialization.
-        """
-        self.resp = self.client.get(r('core:home'))
-
-    def test_get(self):
-        """
-        GET / must return status code 200.
-        """
-        self.assertEqual(200, self.resp.status_code)
-
-    def test_template(self):
-        """
-        Home view must use template index.html.
-        """
-        self.assertTemplateUsed(self.resp, 'index.html')
+urlpatterns = patterns(
+    'eventex.core.views',
+    url(r'^$', 'home', name='home'),
+)

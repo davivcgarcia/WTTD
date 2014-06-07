@@ -12,12 +12,10 @@ GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-AUTHOR: Davi Garcia (davivcgarcia@gmail.com)
-DATE: 05/30/2014
 """
 
 from django.test import TestCase
+from django.core.urlresolvers import reverse as r
 from eventex.subscriptions.models import Subscription
 
 class DetailTest(TestCase):
@@ -28,11 +26,13 @@ class DetailTest(TestCase):
         """
         Test initialization.
         """
-        sub = Subscription.objects.create(name='Davi Garcia',
-                                          cpf='12345678901',
-                                          email='davivcgarcia@gmail.com',
-                                          phone='21-12345678')
-        self.resp = self.client.get('/inscricao/%d/' % sub.pk)
+        sub = Subscription.objects.create(
+            name='Davi Garcia',
+            cpf='12345678901',
+            email='davivcgarcia@gmail.com',
+            phone='21-12345678'
+        )
+        self.resp = self.client.get(r('subscriptions:detail',args=[sub.pk]))
 
     def test_get(self):
         """
@@ -44,8 +44,10 @@ class DetailTest(TestCase):
         """
         Response should be a rendered template.
         """
-        self.assertTemplateUsed(self.resp,
-                                'subscriptions/subscription_detail.html')
+        self.assertTemplateUsed(
+            self.resp,
+            'subscriptions/subscription_detail.html'
+        )
 
     def test_context(self):
         """
@@ -68,5 +70,5 @@ class DetailNotFound(TestCase):
         """
         Verify if the HTTP/404 will return in case of invalid subscription.
         """
-        response = self.client.get('/inscricao/0/')
+        response = self.client.get(r('subscriptions:detail',args=[0]))
         self.assertEqual(404, response.status_code)

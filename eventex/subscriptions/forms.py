@@ -12,9 +12,6 @@ GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-AUTHOR: Davi Garcia (davivcgarcia@gmail.com)
-DATE: 05/29/2014
 """
 
 from django import forms
@@ -25,13 +22,15 @@ class SubscriptionForm(forms.ModelForm):
     """
     Class to map the form used for Subscriptions app.
     """
-    name = forms.CharField(label=_('Nome'))
-    cpf = forms.CharField(label=_('CPF'), max_length=11)
-    email = forms.EmailField(label=_('Email'))
-    phone = forms.CharField(label=_('Telefone'))
+    #name = forms.CharField(label=_('Nome'))
+    #cpf = forms.CharField(label=_('CPF'), max_length=11)
+    #email = forms.EmailField(label=_('Email'))
+    #phone = forms.CharField(label=_('Telefone'))
 
     class Meta(object):
         """
         Meta-class to connect form to model.
         """
         model = Subscription
+        #exclude = ('paid',)
+        fields = ('name', 'cpf', 'email', 'phone')

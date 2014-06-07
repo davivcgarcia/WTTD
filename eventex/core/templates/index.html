@@ -2,5 +2,5 @@
 {% block content %}
 <img src="{{ STATIC_URL }}img/logo.png" alt="EventeX" />
 <h1 class="title">EventeX</h1>
-<p class="lead">O evento mais sensacional do ano depois do Dev in Rio!<br/>Você não pode perder esta oportunidade!<br/><a href="/inscricao/"><strong>Inscreva-se já!</strong></a><br/>Para dúvidas e mais informações entre em contato com <a href="mailto:eventex@eventex.com.br">eventex@eventex.com.br</a></p>
+<p class="lead">O evento mais sensacional do ano depois do Dev in Rio!<br/>Você não pode perder esta oportunidade!<br/><a href="{% url 'subscriptions:subscribe' %}"><strong>Inscreva-se já!</strong></a><br/>Para dúvidas e mais informações entre em contato com <a href="mailto:eventex@eventex.com.br">eventex@eventex.com.br</a></p>
 {% endblock content %}

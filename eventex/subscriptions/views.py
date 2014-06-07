@@ -12,9 +12,6 @@ GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-AUTHOR: Davi Garcia (davivcgarcia@gmail.com)
-DATE: 05/29/2014
 """
 
 from django.http import HttpResponseRedirect
@@ -35,9 +32,11 @@ def new(request):
     """
     New accesses need to see the form in clean state.
     """
-    return render(request,
-                  'subscriptions/subscription_form.html',
-                  {'form': SubscriptionForm()})
+    return render(
+        request,
+        'subscriptions/subscription_form.html',
+        {'form': SubscriptionForm()}
+    )
 
 def create(request):
     """
@@ -48,16 +47,20 @@ def create(request):
         obj = form.save()
         return HttpResponseRedirect('/inscricao/%d/' % obj.pk)
     else:
-        return render(request,
-                      'subscriptions/subscription_form.html',
-                      {'form': form})
+        return render(
+            request,
+            'subscriptions/subscription_form.html',
+            {'form': form}
+        )
 
 def detail(request, pk):
     """
     Access the detail page should handle a specific subscription.
     """
     subscription = get_object_or_404(Subscription, pk=pk)
-    return render(request,
-                  'subscriptions/subscription_detail.html',
-                  {'subscription': subscription})
+    return render(
+        request,
+        'subscriptions/subscription_detail.html',
+        {'subscription': subscription}
+    )
     

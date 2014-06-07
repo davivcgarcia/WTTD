@@ -12,9 +12,6 @@ GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-AUTHOR: Davi Garcia (davivcgarcia@gmail.com)
-DATE: 05/29/2014
 """
 
 from django.db import models
@@ -29,6 +26,7 @@ class Subscription(models.Model):
     email = models.EmailField(_('email'), unique=True)
     phone = models.CharField(_('telefone'), max_length=20, blank=True)
     created_at = models.DateTimeField(_('criado em'), auto_now_add=True)
+    paid = models.BooleanField(_('Pago'), default=False)
 
     class Meta(object):
         """

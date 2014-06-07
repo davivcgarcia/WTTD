@@ -12,12 +12,10 @@ GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-AUTHOR: Davi Garcia (davivcgarcia@gmail.com)
-DATE: 05/29/2014
 """
 
 from django.test import TestCase
+from django.core.urlresolvers import reverse as r
 from eventex.subscriptions.models import Subscription
 from eventex.subscriptions.forms import SubscriptionForm
 
@@ -29,7 +27,7 @@ class SubscribeTest(TestCase):
         """
         Test initialization.
         """
-        self.resp = self.client.get('/inscricao/')
+        self.resp = self.client.get(r('subscriptions:subscribe'))
 
     def test_get(self):
         """
@@ -41,8 +39,10 @@ class SubscribeTest(TestCase):
         """
         Response should be a rendered template.
         """
-        self.assertTemplateUsed(self.resp,
-                                'subscriptions/subscription_form.html')
+        self.assertTemplateUsed(
+            self.resp,
+            'subscriptions/subscription_form.html'
+        )
 
     def test_html(self):
         """
@@ -81,7 +81,7 @@ class SubscribePostTest(TestCase):
             email='davivcgarcia@gmail.com',
             phone='21-12345678'
         )
-        self.resp = self.client.post('/inscricao/', data)
+        self.resp = self.client.post(r('subscriptions:subscribe'), data)
 
     def test_post(self):
         """
@@ -109,7 +109,7 @@ class SubscribeInvalidPostTest(TestCase):
             email='davivcgarcia@gmail.com',
             phone='21-12345678'
         )
-        self.resp = self.client.post('/inscricao/', data)
+        self.resp = self.client.post(r('subscriptions:subscribe'), data)
 
     def test_post(self):
         """

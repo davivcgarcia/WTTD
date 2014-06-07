@@ -12,9 +12,6 @@ GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-AUTHOR: Davi Garcia (davivcgarcia@gmail.com)
-DATE: 05/29/2014
 """
 
 from datetime import datetime
@@ -30,10 +27,12 @@ class SubscriptionTest(TestCase):
         """
         Test initialization.
         """
-        self.obj = Subscription(name='Davi Garcia',
-                                cpf='12345678901',
-                                email='davigarcia@gmail.com',
-                                phone='(21) 1234-5678')
+        self.obj = Subscription(
+            name='Davi Garcia',
+            cpf='12345678901',
+            email='davigarcia@gmail.com',
+            phone='(21) 1234-5678'
+        )
 
     def test_create(self):
         """
@@ -55,6 +54,12 @@ class SubscriptionTest(TestCase):
         """
         self.assertEqual(u'Davi Garcia', unicode(self.obj))
 
+    def test_paid_default_value_is_False(self):
+        """
+        Verfy if the default value for paid is False.
+        """
+        self.assertEqual(False, self.obj.paid)
+
 class SubscriptionUniqueTest(TestCase):
     """
     Test Class.
@@ -63,27 +68,33 @@ class SubscriptionUniqueTest(TestCase):
         """
         Test initialization.
         """
-        Subscription.objects.create(name='Davi Garcia',
-                                    cpf='12345678901',
-                                    email='davigarcia@gmail.com',
-                                    phone='(21) 1234-5678')
+        Subscription.objects.create(
+            name='Davi Garcia',
+            cpf='12345678901',
+            email='davigarcia@gmail.com',
+            phone='(21) 1234-5678'
+        )
 
     def test_cpf_unique(self):
         """
         CPF must be unique.
         """
-        s = Subscription(name='David Garcia',
-                         cpf='12345678901',
-                         email='davigarcia@yahoo.com',
-                         phone='(21) 4321-5678')
-        self.assertRaises(IntegrityError, s.save)
+        sub = Subscription(
+            name='David Garcia',
+            cpf='12345678901',
+            email='davigarcia@yahoo.com',
+            phone='(21) 4321-5678'
+        )
+        self.assertRaises(IntegrityError, sub.save)
 
     def test_email_unique(self):
         """
         CPF must be unique.
         """
-        s = Subscription(name='David Garcia',
-                         cpf='10987654321',
-                         email='davigarcia@gmail.com',
-                         phone='(21) 4321-5678')
-        self.assertRaises(IntegrityError, s.save)
+        sub = Subscription(
+            name='David Garcia',
+            cpf='10987654321',
+            email='davigarcia@gmail.com',
+            phone='(21) 4321-5678'
+        )
+        self.assertRaises(IntegrityError, sub.save)

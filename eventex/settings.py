@@ -12,9 +12,6 @@ GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-AUTHOR: Davi Garcia (davivcgarcia@gmail.com)
-DATE: 05/29/2014
 """
 
 # Project Imports.
@@ -26,8 +23,10 @@ from dj_database_url import parse as db_url
 # General Configuration.
 
 BASE_DIR = Path(__file__).parent
-SECRET_KEY = config('SECRET_KEY',
-                    default='8y)@(krme@28r2e3j5=irunc8(+8)fxqbevlg%1xmkov%6$6==')
+SECRET_KEY = config(
+    'SECRET_KEY',
+    default='8y)@(krme@28r2e3j5=irunc8(+8)fxqbevlg%1xmkov%6$6=='
+)
 DEBUG = config('DEBUG', default=False, cast=bool)
 TEMPLATE_DEBUG = DEBUG
 ALLOWED_HOSTS = ['*']
@@ -41,6 +40,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'south',
     'eventex.core',
     'eventex.subscriptions',
 )
@@ -76,8 +76,8 @@ DATABASES = {
 
 # Internationalization.
 
-LANGUAGE_CODE = 'en-us'
-TIME_ZONE = 'UTC'
+LANGUAGE_CODE = 'pt-br'
+TIME_ZONE = 'America/Sao_Paulo'
 USE_I18N = True
 USE_L10N = True
 USE_TZ = True
@@ -86,3 +86,7 @@ USE_TZ = True
 
 STATIC_ROOT = BASE_DIR.child('staticfiles')
 STATIC_URL = '/static/'
+
+# Disable South Migration for database used in tests.
+
+SOUTH_TEST_MIGRATE = False
