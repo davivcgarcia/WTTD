@@ -16,7 +16,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from django.contrib import admin
 from django.utils.timezone import now
-from django.utils.translation import ugettext as _
+from django.utils.translation import ungettext, ugettext as _
 from eventex.subscriptions.models import Subscription
 
 class SubscriptionAdmin(admin.ModelAdmin):
@@ -40,5 +40,21 @@ class SubscriptionAdmin(admin.ModelAdmin):
 
     subscribed_today.short_description = _(u'Inscrito hoje?')
     subscribed_today.boolean = True
+
+    def mark_as_paid(self, request, queryset):
+        """
+        Action to mark all selected IDs with paid = True.
+        """
+        count = queryset.update(paid=True)
+        msg = ungettext(
+            u'%d inscrição foi marcada como paga.',
+            u'%d inscrições foram marcadas como pagas.',
+            count
+        )
+        self.message_user(request, msg % count)
+
+    mark_as_paid.short_description = _('Marcar como pago')
+
+    actions = ['mark_as_paid']
 
 admin.site.register(Subscription, SubscriptionAdmin)

@@ -8,3 +8,4 @@ newrelic==2.18.1.15
 python-decouple==2.2
 south==0.8.4
 pytz==2014.4
+mock==1.0.1

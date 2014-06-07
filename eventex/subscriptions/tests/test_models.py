@@ -87,14 +87,14 @@ class SubscriptionUniqueTest(TestCase):
         )
         self.assertRaises(IntegrityError, sub.save)
 
-    def test_email_unique(self):
+    def test_email_can_repeat(self):
         """
-        CPF must be unique.
+        CPF don't need to be unique.
         """
-        sub = Subscription(
+        sub = Subscription.objects.create(
             name='David Garcia',
             cpf='10987654321',
             email='davigarcia@gmail.com',
             phone='(21) 4321-5678'
         )
-        self.assertRaises(IntegrityError, sub.save)
+        self.assertEqual(2, sub.pk)
