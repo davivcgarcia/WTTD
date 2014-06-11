@@ -14,25 +14,30 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
-from django.shortcuts import render, get_object_or_404
-from eventex.core.models import Speaker
+
+from django.test import TestCase
+from django.core.urlresolvers import reverse as r
 
 
-def home(request):
+class HomeTest(TestCase):
     """
-    View to render the home page.
+    Test Class.
     """
-    return render(request, 'index.html')
+    def setUp(self):
+        """
+        Test initialization.
+        """
+        self.resp = self.client.get(r('core:home'))
 
+    def test_get(self):
+        """
+        GET / must return status code 200.
+        """
+        self.assertEqual(200, self.resp.status_code)
 
-def speaker_detail(request, slug):
-    """
-    View to render the speaker detail page.
-    """
-    speaker = get_object_or_404(Speaker, slug=slug)
-    context = {'speaker': speaker}
-    return render(
-        request,
-        'core/speaker_detail.html',
-        context
-    )
+    def test_template(self):
+        """
+        Home view must use template index.html.
+        """
+        self.assertTemplateUsed(self.resp, 'index.html')
+

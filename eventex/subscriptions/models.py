@@ -17,6 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
+
 class Subscription(models.Model):
     """
     DB Model to store subscriptions from users.
@@ -37,5 +38,7 @@ class Subscription(models.Model):
         verbose_name_plural = _(u'inscrições')
 
     def __unicode__(self):
+        """
+        Unicode representation of the object.
+        """
         return self.name
-    
