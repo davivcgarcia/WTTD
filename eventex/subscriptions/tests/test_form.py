@@ -49,6 +49,20 @@ class SubscriptionFormTest(TestCase):
         form = self.make_validated_form(email='')
         self.assertFalse(form.errors)
 
+    def test_name_must_be_capitalized(self):
+        """
+        Name must be capitalized.
+        """
+        form = self.make_validated_form(name='DaVi DA sILva')
+        self.assertEqual('Davi da Silva', form.cleaned_data['name'])
+
+    def test_must_inform_email_or_phone(self):
+        """
+        Make sure that email or phone are populated.
+        """
+        form = self.make_validated_form(email='', phone_0='', phone_1='')
+        self.assertItemsEqual(['__all__'], form.errors)
+
     def make_validated_form(self, **kwargs):
         """
         Creates a valid form and changes it based on kwargs.
@@ -57,7 +71,8 @@ class SubscriptionFormTest(TestCase):
             name='Davi Garcia',
             cpf='12345678901',
             email='davigarcia@gmail.com',
-            phone='(21) 1234-5678'
+            phone_0='21',
+            phone_1='12345678'
         )
         data.update(kwargs)
         form = SubscriptionForm(data)
