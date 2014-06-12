@@ -24,7 +24,7 @@ class Speaker(models.Model):
     """
     name = models.CharField(_('Nome'), max_length=255)
     slug = models.SlugField(_('Slug'))
-    url = models.URLField(_('Url'),)
+    url = models.URLField(_('Url'))
     description = models.TextField(_('Descrição'), blank=True)
 
     def __unicode__(self):
@@ -32,3 +32,23 @@ class Speaker(models.Model):
         Unicode representation of the object.
         """
         return self.name
+
+
+class Contact(models.Model):
+    """
+    DB Model to store contact information of speakers.
+    """
+    KINDS = (
+        ('P', _('Telefone')),
+        ('E', _('E-mail')),
+        ('F', _('Fax'))
+    )
+    speaker = models.ForeignKey('Speaker', verbose_name=_('palestrante'))
+    kind = models.CharField(_('tipo'), max_length=1, choices=KINDS)
+    value = models.CharField(_('valor'), max_length=255)
+
+    def __unicode__(self):
+        """
+        Unicode representation of the object.
+        """
+        return self.value
