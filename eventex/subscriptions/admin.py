@@ -19,6 +19,7 @@ from django.utils.timezone import now
 from django.utils.translation import ungettext, ugettext as _
 from eventex.subscriptions.models import Subscription
 
+
 class SubscriptionAdmin(admin.ModelAdmin):
     """
     Class used to define display settings for model's admin page.
@@ -54,7 +55,6 @@ class SubscriptionAdmin(admin.ModelAdmin):
         self.message_user(request, msg % count)
 
     mark_as_paid.short_description = _('Marcar como pago')
-
     actions = ['mark_as_paid']
 
 admin.site.register(Subscription, SubscriptionAdmin)
