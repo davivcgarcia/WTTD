@@ -16,11 +16,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
-from eventex.core.managers import (
-    EmailContactManager,
-    PhoneContactManager,
-    FaxContactManager
-)
+from eventex.core.managers import KindContactManager
+
 
 class Speaker(models.Model):
     """
@@ -53,9 +50,9 @@ class Contact(models.Model):
     value = models.CharField(_('valor'), max_length=255)
 
     objects = models.Manager()
-    emails = EmailContactManager()
-    phones = PhoneContactManager()
-    faxes = FaxContactManager()
+    emails = KindContactManager(kind='E')
+    phones = KindContactManager(kind='P')
+    faxes = KindContactManager(kind='F')
 
     def __unicode__(self):
         """

@@ -17,40 +17,21 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 from django.db import models
 
 
-class EmailContactManager(models.Manager):
+class KindContactManager(models.Manager):
     """
-    RelatedManager class for emails on contact.
+    Generic RelatedManager for contact.
     """
+    def __init__(self, kind):
+        """
+        Class constructor.
+        """
+        super(KindContactManager, self).__init__()
+        self.kind = kind
+
     def get_queryset(self):
         """
-        Define custom queryset.
+        Define custom queryset for contact kind.
         """
-        qs = super(EmailContactManager, self).get_queryset()
-        qs = qs.filter(kind='E')
-        return qs
-
-
-class PhoneContactManager(models.Manager):
-    """
-    RelatedManager class for phones on contacts.
-    """
-    def get_queryset(self):
-        """
-        Define custom queryset.
-        """
-        qs = super(PhoneContactManager, self).get_queryset()
-        qs = qs.filter(kind='P')
-        return qs
-
-
-class FaxContactManager(models.Manager):
-    """
-    RelatedManager class for phones on contacts.
-    """
-    def get_queryset(self):
-        """
-        Define custom queryset.
-        """
-        qs = super(FaxContactManager, self).get_queryset()
-        qs = qs.filter(kind='F')
+        qs = super(KindContactManager,self).get_queryset()
+        qs = qs.filter(kind=self.kind)
         return qs
