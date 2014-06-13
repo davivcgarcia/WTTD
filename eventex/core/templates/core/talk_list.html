@@ -1,15 +1,15 @@
 {% extends 'base.html' %}
 {% block content %}
     <h3>Manhã</h3>
-    <div class="palestra">
-        <h4><a href="/palestras/1/">10:00 - Título da palestra</a></h4>
-        <h5><a href="/palestrantes/davi-garcia/" title="Passionate software developer!">Davi Garcia</a></h5>
-        <p>Descrição da palestra</p>
-    </div>
+    {% for talk in morning_talks %}
+        {% include 'core/talk_list_snippet.html' %}
+    {% empty %}
+        <p>Não existem palestras durante a manhã.</p>
+    {% endfor %}
     <h3>Tarde</h3>
-    <div class="palestra">
-        <h4><a href="/palestras/2/">13:00 - Título da palestra</a></h4>
-        <h5><a href="/palestrantes/davi-garcia/" title="Passionate software developer!">Davi Garcia</a></h5>
-        <p>Descrição da palestra</p>
-    </div>
+    {% for talk in afternoon_talks %}
+        {% include 'core/talk_list_snippet.html' %}
+    {% empty %}
+        <p>Não existem palestras durante a tarde.</p>
+    {% endfor %}
 {% endblock content %}

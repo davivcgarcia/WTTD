@@ -16,6 +16,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from django.test import TestCase
 from django.core.urlresolvers import reverse as r
+from eventex.core.models import Speaker, Talk
 
 
 class TalkListTest(TestCase):
@@ -26,6 +27,24 @@ class TalkListTest(TestCase):
         """
         Test initialization.
         """
+        s = Speaker.objects.create(
+            name='Davi Garcia',
+            slug='davi-garcia',
+            url='http://www.davigarcia.com.br',
+            description='Passionate software developer!'
+        )
+        t1 = Talk.objects.create(
+            description='Descrição da palestra.',
+            title='Título da palestra.',
+            start_time='10:00'
+        )
+        t2 = Talk.objects.create(
+            description='Descrição da palestra.',
+            title='Título da palestra.',
+            start_time='13:00'
+        )
+        t1.speakers.add(s)
+        t2.speakers.add(s)
         self.resp = self.client.get(r('core:talk_list'))
 
     def test_get(self):
@@ -44,15 +63,15 @@ class TalkListTest(TestCase):
         """
         HTML should list talks.
         """
-        self.assertContains(self.resp, u'Título da palestra', 2)
-        self.assertContains(self.resp, u'10:00')
-        self.assertContains(self.resp, u'13:00')
-        self.assertContains(self.resp, u'/palestras/1/')
-        self.assertContains(self.resp, u'/palestras/2/')
-        self.assertContains(self.resp, u'/palestrantes/davi-garcia/', 2)
-        self.assertContains(self.resp, u'Passionate software developer!', 2)
-        self.assertContains(self.resp, u'Davi Garcia', 2)
-        self.assertContains(self.resp, u'Descrição da palestra', 2)
+        self.assertContains(self.resp, 'Título da palestra', 2)
+        self.assertContains(self.resp, '10:00')
+        self.assertContains(self.resp, '13:00')
+        self.assertContains(self.resp, '/palestras/1/')
+        self.assertContains(self.resp, '/palestras/2/')
+        self.assertContains(self.resp, '/palestrantes/davi-garcia/', 2)
+        self.assertContains(self.resp, 'Passionate software developer!', 2)
+        self.assertContains(self.resp, 'Davi Garcia', 2)
+        self.assertContains(self.resp, 'Descrição da palestra', 2)
 
     def test_morning_talk_in_context(self):
         """

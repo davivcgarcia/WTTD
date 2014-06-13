@@ -16,7 +16,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
-from eventex.core.managers import KindContactManager
+from eventex.core.managers import KindContactManager, PeriodManager
 
 
 class Speaker(models.Model):
@@ -28,11 +28,19 @@ class Speaker(models.Model):
     url = models.URLField(_(u'Url'))
     description = models.TextField(_(u'Descrição'), blank=True)
 
+    class Meta(object):
+        verbose_name = _(u'palestrante')
+        verbose_name_plural = _(u'palestrantes')
+
     def __unicode__(self):
         """
         Unicode representation of the object.
         """
         return self.name
+
+    @models.permalink
+    def get_absolute_url(self):
+        return ('core:speaker_detail', (), {'slug': self.slug})
 
 
 class Contact(models.Model):
@@ -68,10 +76,20 @@ class Talk(models.Model):
     title = models.CharField(_(u'Título'), max_length=200)
     description = models.TextField(_(u'Descrição'))
     start_time = models.TimeField(_(u'Horário'), blank=True)
-    speakers = models.ManyToManyField('Speaker', verbose_name=_('palestrantes'))
+    speakers = models.ManyToManyField(u'Speaker', verbose_name=_(u'palestrantes'))
+
+    objects = PeriodManager()
+
+    class Meta(object):
+        verbose_name = _(u'palestra')
+        verbose_name_plural = _(u'palestras')
 
     def __unicode__(self):
         """
         Unicode representation of the object.
         """
         return self.title
+
+    def get_absolute_url(self):
+        # TODO: Use Reverse.
+        return '/palestras/%d/' % self.pk

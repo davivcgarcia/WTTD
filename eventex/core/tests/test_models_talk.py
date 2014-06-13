@@ -15,8 +15,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
 from django.test import TestCase
-from django.core.exceptions import ValidationError
 from eventex.core.models import Talk
+from eventex.core.managers import PeriodManager
 
 
 class TalkModelTest(TestCase):
@@ -55,3 +55,45 @@ class TalkModelTest(TestCase):
             url='http://www.davigarcia.com.br'
         )
         self.assertEqual(1, self.talk.speakers.count())
+
+    def test_period_manager(self):
+        """
+        Talk default manager must be instance of PeriodManager.
+        """
+        self.assertIsInstance(Talk.objects, PeriodManager)
+
+
+class PeriodManagerTest(TestCase):
+    """
+    Test class.
+    """
+    def setUp(self):
+        """
+        Test initialization.
+        """
+        Talk.objects.create(
+            title='Morning Talk', start_time='10:00'
+        )
+        Talk.objects.create(
+            title='Afternoon Talk', start_time='13:00'
+        )
+
+    def test_morning(self):
+        """
+        Should return only talks before 12:00.
+        """
+        self.assertQuerysetEqual(
+            Talk.objects.at_morning(),
+            ['Morning Talk'],
+            lambda t: t.title
+        )
+
+    def test_afternoon(self):
+        """
+        Should return only talks after 11:59:59.
+        """
+        self.assertQuerysetEqual(
+            Talk.objects.at_afternoon(),
+            ['Afternoon Talk'],
+            lambda t: t.title
+        )

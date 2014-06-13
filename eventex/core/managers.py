@@ -14,6 +14,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
+from datetime import time
 from django.db import models
 
 
@@ -34,4 +35,27 @@ class KindContactManager(models.Manager):
         """
         qs = super(KindContactManager,self).get_queryset()
         qs = qs.filter(kind=self.kind)
+        return qs
+
+
+class PeriodManager(models.Manager):
+    """
+    Custom default manager for Talk model.
+    """
+    midday = time(12)
+
+    def at_morning(self):
+        """
+        Define custom queryset for talks at morning.
+        """
+        qs = self.filter(start_time__lt=self.midday)
+        qs = qs.order_by('start_time')
+        return qs
+
+    def at_afternoon(self):
+        """
+        Define custom queryset for talks at afternoon.
+        """
+        qs = self.filter(start_time__gte=self.midday)
+        qs.order_by('start_time')
         return qs
