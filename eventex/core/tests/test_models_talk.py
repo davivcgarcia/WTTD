@@ -15,7 +15,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
 from django.test import TestCase
-from eventex.core.models import Talk
+from eventex.core.models import Talk, Course
 from eventex.core.managers import PeriodManager
 
 
@@ -61,6 +61,51 @@ class TalkModelTest(TestCase):
         Talk default manager must be instance of PeriodManager.
         """
         self.assertIsInstance(Talk.objects, PeriodManager)
+
+
+class CourseModelTest(TestCase):
+    """
+    Test class.
+    """
+    def setUp(self):
+        """
+        Test initialization.
+        """
+        self.course = Course.objects.create(
+            title=u'Tutorial Django',
+            description=u'Descrição do curso.',
+            start_time=u'10:00',
+            slots=20
+        )
+
+    def test_create(self):
+        """
+        Course object must be saved to db.
+        """
+        self.assertEqual(1, self.course.pk)
+
+    def test_unicode(self):
+        """
+        Course object must have custom unicode representation.
+        """
+        self.assertEqual(u'Tutorial Django', unicode(self.course))
+
+    def test_speaker(self):
+        """
+        Course have many speakers and vice-versa.
+        """
+        self.course.speakers.create(
+            name='Davi Garcia',
+            slug='davi-garcia',
+            url='http://www.davigarcia.com.br'
+        )
+        self.assertEqual(1, self.course.speakers.count())
+
+    def test_period_manager(self):
+        """
+        Course default manager must be instance of Period Manager.
+        """
+        self.assertIsInstance(Course.objects, PeriodManager)
 
 
 class PeriodManagerTest(TestCase):

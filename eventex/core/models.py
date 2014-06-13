@@ -93,3 +93,13 @@ class Talk(models.Model):
     def get_absolute_url(self):
         # TODO: Use Reverse.
         return '/palestras/%d/' % self.pk
+
+
+class Course(Talk):
+    """
+    DB Model to store detail information of courses.
+    """
+    slots = models.IntegerField(_('vagas'))
+    notes = models.TextField(_(u'observações'))
+
+    objects = PeriodManager()
