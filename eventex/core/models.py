@@ -23,10 +23,10 @@ class Speaker(models.Model):
     """
     DB Model to store detail information of speakers.
     """
-    name = models.CharField(_('Nome'), max_length=255)
-    slug = models.SlugField(_('Slug'))
-    url = models.URLField(_('Url'))
-    description = models.TextField(_('Descrição'), blank=True)
+    name = models.CharField(_(u'Nome'), max_length=255)
+    slug = models.SlugField(_(u'Slug'))
+    url = models.URLField(_(u'Url'))
+    description = models.TextField(_(u'Descrição'), blank=True)
 
     def __unicode__(self):
         """
@@ -59,3 +59,19 @@ class Contact(models.Model):
         Unicode representation of the object.
         """
         return self.value
+
+
+class Talk(models.Model):
+    """
+    DB Model to store detail information of talks.
+    """
+    title = models.CharField(_(u'Título'), max_length=200)
+    description = models.TextField(_(u'Descrição'))
+    start_time = models.TimeField(_(u'Horário'), blank=True)
+    speakers = models.ManyToManyField('Speaker', verbose_name=_('palestrantes'))
+
+    def __unicode__(self):
+        """
+        Unicode representation of the object.
+        """
+        return self.title
