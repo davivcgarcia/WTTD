@@ -14,12 +14,25 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
-from django.conf.urls import patterns, url
+from django.test import TestCase
+from django.template import Template, Context
 
-urlpatterns = patterns(
-    'eventex.core.views',
-    url(r'^$', 'home', name='home'),
-    url(r'^palestrantes/(?P<slug>[\w-]+)/$', 'speaker_detail', name='speaker_detail'),
-    url(r'^palestras/$', 'talk_list', name='talk_list'),
-    url(r'^palestras/(?P<pk>\d+)/$', 'talk_detail', name='talk_detail'),
-)
+
+class YoutubeTagTest(TestCase):
+    """
+    Test class.
+    """
+    def setUp(self):
+        """
+        Test initialization.
+        """
+        context = Context({'ID': 1})
+        template = Template('{% load youtube %}{% youtube ID %}')
+        self.content = template.render(context)
+
+    def test_output(self):
+        """
+        Tag must be rendered by template.
+        """
+        self.assertIn('<object', self.content)
+        self.assertIn('/1', self.content)

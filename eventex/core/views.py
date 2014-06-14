@@ -39,8 +39,22 @@ def speaker_detail(request, slug):
 
 
 def talk_list(request):
+    """
+    View to render the talk list page.
+    """
     context = {
         'morning_talks': Talk.objects.at_morning(),
         'afternoon_talks': Talk.objects.at_afternoon()
     }
     return render(request, 'core/talk_list.html', context)
+
+
+def talk_detail(request, pk):
+    """
+    View to render the talk detail page.
+    """
+    talk = get_object_or_404(Talk, pk=pk)
+    context = {
+        'talk': talk,
+    }
+    return render(request, 'core/talk_detail.html', context)
