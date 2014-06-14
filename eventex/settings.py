@@ -43,6 +43,7 @@ INSTALLED_APPS = (
     'south',
     'eventex.core',
     'eventex.subscriptions',
+    'eventex.myauth',
 )
 
 # Middleware enabled.
@@ -54,6 +55,12 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+)
+
+# Authentication Backends.
+
+AUTHENTICATION_BACKENDS = (
+    'eventex.myauth.backends.EmailBackend',
 )
 
 # Location of the root URL map.
