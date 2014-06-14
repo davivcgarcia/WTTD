@@ -61,6 +61,7 @@ MIDDLEWARE_CLASSES = (
 
 AUTHENTICATION_BACKENDS = (
     'eventex.myauth.backends.EmailBackend',
+    'django.contrib.auth.backends.ModelBackend'
 )
 
 # Location of the root URL map.
