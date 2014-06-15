@@ -57,12 +57,9 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-# Authentication Backends.
+# Authentication User Model
 
-AUTHENTICATION_BACKENDS = (
-    'eventex.myauth.backends.EmailBackend',
-    'django.contrib.auth.backends.ModelBackend'
-)
+AUTH_USER_MODEL = 'myauth.User'
 
 # Location of the root URL map.
 

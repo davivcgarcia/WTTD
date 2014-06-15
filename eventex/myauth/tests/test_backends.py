@@ -14,12 +14,14 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
+from unittest import skip
 from django.test import TestCase
 from django.test.utils import override_settings
 from django.contrib.auth import get_user_model
 from eventex.myauth.backends import EmailBackend
 
 
+@skip
 class EmailBackendTest(TestCase):
     """
     Test class.
@@ -73,6 +75,7 @@ class EmailBackendTest(TestCase):
         self.assertIsNotNone(self.backend.get_user(1))
 
 
+@skip
 class MultipleEmailsTest(TestCase):
     """
     Test class.
@@ -105,6 +108,7 @@ class MultipleEmailsTest(TestCase):
         self.assertIsNone(user)
 
 
+@skip
 @override_settings(AUTHENTICATION_BACKENDS=('eventex.myauth.backends.EmailBackend',))
 class FunctionalEmailBackendTest(TestCase):
     """

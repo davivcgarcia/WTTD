@@ -15,7 +15,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
 from django.contrib import admin
-from eventex.core.models import Speaker, Contact, Talk
+from eventex.core.models import Speaker, Contact, Talk, Course
 
 
 class ContactInline(admin.TabularInline):
@@ -36,3 +36,4 @@ class SpeakerAdmin(admin.ModelAdmin):
 
 admin.site.register(Speaker, SpeakerAdmin)
 admin.site.register(Talk)
+admin.site.register(Course)

@@ -76,13 +76,13 @@ class Talk(models.Model):
     title = models.CharField(_(u'Título'), max_length=200)
     description = models.TextField(_(u'Descrição'))
     start_time = models.TimeField(_(u'Horário'), blank=True)
-    speakers = models.ManyToManyField(u'Speaker', verbose_name=_(u'palestrantes'))
+    speakers = models.ManyToManyField('Speaker', verbose_name=_(u'palestrantes'))
 
     objects = PeriodManager()
 
     class Meta(object):
-        verbose_name = _(u'palestra')
-        verbose_name_plural = _(u'palestras')
+        verbose_name = _('palestra')
+        verbose_name_plural = _('palestras')
 
     def __unicode__(self):
         """
@@ -103,6 +103,10 @@ class Course(Talk):
     notes = models.TextField(_(u'observações'))
 
     objects = PeriodManager()
+
+    class Meta(object):
+        verbose_name = _('curso')
+        verbose_name_plural = _('cursos')
 
     @property
     def slides(self):
