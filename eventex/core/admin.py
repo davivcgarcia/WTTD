@@ -15,7 +15,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
 from django.contrib import admin
-from eventex.core.models import Speaker, Contact, Talk, Course
+from eventex.core.models import Speaker, Contact, Talk, Course, Media
 
 
 class ContactInline(admin.TabularInline):
@@ -34,6 +34,21 @@ class SpeakerAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('name',)}
 
 
+class MediaInline(admin.TabularInline):
+    """
+    Class used to define display inline Media's info.
+    """
+    model = Media
+    extra = 1
+
+
+class TalkAdmin(admin.ModelAdmin):
+    """
+    Class used to define display settings for Media.
+    """
+    inlines = [MediaInline]
+
+
 admin.site.register(Speaker, SpeakerAdmin)
-admin.site.register(Talk)
-admin.site.register(Course)
+admin.site.register(Talk, TalkAdmin)
+admin.site.register(Course, TalkAdmin)
