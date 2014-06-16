@@ -39,4 +39,14 @@ body {
     width:220px;
     padding:5px 8px;
 }
-.subscribe_form button {margin-left:156px;}
+.subscribe_form button {
+    margin-left:156px;
+}
+
+#id_phone_0 {
+    width: 40px;
+}
+
+#id_phone_1 {
+    width: 180px;
+}
