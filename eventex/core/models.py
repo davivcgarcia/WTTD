@@ -90,6 +90,20 @@ class Talk(models.Model):
         """
         return self.title
 
+    @property
+    def slides(self):
+        """
+        Method to get slides as an attribute.
+        """
+        return self.media_set.filter(kind='SL')
+
+    @property
+    def videos(self):
+        """
+        Method to get videos as an attribute.
+        """
+        return self.media_set.filter(kind='YT')
+
     @models.permalink
     def get_absolute_url(self):
         return ('core:talk_detail', (), {'pk': self.pk})
@@ -107,20 +121,6 @@ class Course(Talk):
     class Meta(object):
         verbose_name = _('curso')
         verbose_name_plural = _('cursos')
-
-    @property
-    def slides(self):
-        """
-        Method to get slides as an attribute.
-        """
-        return self.media_set.filter(kind='SL')
-
-    @property
-    def videos(self):
-        """
-        Method to get videos as an attribute.
-        """
-        return self.media_set.filter(kind='YT')
 
 
 class Media(models.Model):
