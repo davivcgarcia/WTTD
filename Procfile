@@ -1,1 +1,1 @@
-web: gunicorn eventex.wsgi 
+web: newrelic-admin run-program gunicorn eventex.wsgi
