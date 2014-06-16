@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
 {% load youtube slideshare %}
 {% block content %}
-    <h4>{{ talk.title }}</h4>
+    <h3 class="title">{{ talk.title }}</h4>
     {% for speaker in talk.speakers.all %}
-        <h5><a href="{{ speaker.get_absolute_url }}" title="{{ speaker.description|truncatewords:20 }}">{{ speaker.name }}</a></h5>
+        <h5 class="lead"><a href="{{ speaker.get_absolute_url }}" title="{{ speaker.description|truncatewords:20 }}">{{ speaker.name }}</a></h5>
     {% endfor %}
-    <p>{{ talk.description }}</p>
+    <p class="lead">{{ talk.description }}</p>
     {% for video in talk.videos %}
         <p>{% youtube video.media_id %}</p>
     {% endfor %}
