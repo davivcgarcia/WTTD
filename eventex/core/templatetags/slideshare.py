@@ -37,20 +37,33 @@ TEMPLATE = """
 
 
 def do_slideshare(parser, token):
+    """
+    Implements a custom template tag for Youtube videos.
+    """
     try:
         # split_contents() knows not to split quoted strings.
         tag_name, id_, doc = token.split_contents()
     except ValueError:
-        raise template.TemplateSyntaxError, "%r tag requires 2 arguments" % token.contents.split()[0]
+        message = "%r tag requires 2 arguments" % token.contents.split()[0]
+        raise template.TemplateSyntaxError(message)
     return SlideShareNode(id_, doc)
 
 
 class SlideShareNode(Node):
+    """
+    Implements the tag class.
+    """
     def __init__(self, id_, doc):
+        """
+        Object initialization.
+        """
         self.id = template.Variable(id_)
         self.doc = template.Variable(doc)
 
     def render(self, context):
+        """
+        Object initialization.
+        """
         try:
             actual_id = self.id.resolve(context)
         except template.VariableDoesNotExist:

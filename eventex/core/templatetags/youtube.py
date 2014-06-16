@@ -38,7 +38,8 @@ def do_youtube(parser, token):
     try:
         tag_name, id_ = token.split_contents()
     except:
-        raise template.TemplateSyntaxError, "%r tag requires 1 argument" % token.contents.split()[0]
+        message = "%r tag requires 1 argument" % token.contents.split()[0]
+        raise template.TemplateSyntaxError(message)
     return YoutubeNode(id_)
 
 
